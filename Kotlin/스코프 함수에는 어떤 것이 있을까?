@@ -1,0 +1,64 @@
+Scope function ?
+- 객체의 컨텍스트에서 실행할 코드 블록을 간결하게 작성할 수 있도록 돕는 기능
+
+
+1. let
+- 사용 목적: 객체를 변환하거나 null 체크 후 작업을 수행할 때 사용.
+- it 키워드를 통해 객체를 참조.
+- 반환값: 람다 결과값.
+
+val result = someObject?.let {
+    // it으로 someObject를 참조하며 작업 수행
+    it.someMethod()
+    "Result of operation"
+}
+
+2. run
+- 사용 목적: 객체에서 여러 작업을 수행하고 결과를 반환할 때 사용.
+- this 키워드를 통해 객체를 참조.
+- 반환값: 람다 결과값.
+
+val result = someObject.run {
+    // this로 someObject를 참조
+    someMethod()
+    "Run result"
+}
+
+3. with
+- 사용 목적: 객체에서 여러 작업을 수행할 때 사용. 다른 scope function과 달리 객체를 수신자로 받음.
+- this 키워드를 통해 객체를 참조.
+- 반환값: 람다 결과값.
+
+val result = with(someObject) {
+    // this로 someObject를 참조
+    someMethod()
+    "With result" 
+}
+
+4. apply
+- 사용 목적: 객체의 속성을 변경한 후 해당 객체를 반환할 때 사용.
+- this 키워드를 통해 객체를 참조.
+- 반환값: 객체 자신을 반환.
+
+val modifiedObject = someObject.apply {
+    // this로 someObject를 참조하며 속성 변경
+    someProperty = newValue
+}
+
+5. also
+- 사용 목적: 객체의 속성을 변경하거나 부수적인 작업을 수행한 후 해당 객체를 반환할 때 사용.
+- it 키워드를 통해 객체를 참조.
+- 반환값: 객체 자신을 반환.
+
+val modifiedObject = someObject.also {
+    // it으로 someObject를 참조하며 부가 작업 수행
+    log(it)
+}
+
+
+요약
+let: 객체를 변환하거나 null 체크 후 작업을 수행하고 싶을 때.
+run: 객체의 여러 작업을 처리하고 결과를 반환할 때.
+with: 객체에 대해 여러 작업을 처리할 때.
+apply: 객체를 설정하고 반환할 때.
+also: 부수적인 작업을 처리하고 객체를 반환할 때.
